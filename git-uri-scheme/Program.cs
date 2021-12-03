@@ -11,12 +11,6 @@ namespace git_uri_scheme
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(args.Length);
-            foreach (var arg in args)
-            {
-                Console.WriteLine(arg);
-            }
-
             if (args.Length > 0 && string.Equals(args[0], "-install", StringComparison.OrdinalIgnoreCase))
             {
                 var fileName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
@@ -45,12 +39,12 @@ namespace git_uri_scheme
             processStartInfo.WorkingDirectory = localRepo;
             processStartInfo.RedirectStandardOutput = true;
             var process = System.Diagnostics.Process.Start(processStartInfo);
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string line = process.StandardOutput.ReadLine();
-                Console.WriteLine(line);
-                // do something with line
-            }
+            //while (!process.StandardOutput.EndOfStream)
+            //{
+            //    string line = process.StandardOutput.ReadLine();
+            //    Console.WriteLine(line);
+            //    // do something with line
+            //}
         }
 
         private static void InstallScheme(string exefile)
