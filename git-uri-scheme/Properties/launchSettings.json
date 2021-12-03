@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "git-uri-scheme": {
+      "commandName": "Project",
+      "commandLineArgs": "git-uri://checkout/bugfix/VAM-6818-on-the-full-profile-clicking-on-the-icon-doesn-t-do-anything?localRepo=E:%5Csources%5Cportail%5Csources%5C"
+    }
+  }
+}
