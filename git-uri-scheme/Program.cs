@@ -23,18 +23,34 @@ namespace git_uri_scheme
                 InstallScheme(fileName);
             }
 
-            ParseGitCommand(args[0]);
-            Console.WriteLine("Hello World!");
-            Console.Read();
-
+            ParseGitCommand(new Uri(args[0]));
         }
 
-        private static void ParseGitCommand(string commandlineArgument)
+        private static void ParseGitCommand(Uri uri)
         {
-            var uri = new Uri(commandlineArgument);
+            switch (uri.Authority)
+            {
+                case "checkout":
+                    PerformCheckout(uri);
+                    break;
+            }
+        }
+
+        private static void PerformCheckout(Uri uri)
+        {
             var queryDictionary = System.Web.HttpUtility.ParseQueryString(uri.Query);
-            var branch = uri.LocalPath;
+            var branch = uri.LocalPath.TrimStart('/');
             var localRepo = HttpUtility.UrlDecode(queryDictionary["localRepo"]);
+            var processStartInfo = new ProcessStartInfo("git.exe", $"checkout {branch}");
+            processStartInfo.WorkingDirectory = localRepo;
+            processStartInfo.RedirectStandardOutput = true;
+            var process = System.Diagnostics.Process.Start(processStartInfo);
+            while (!process.StandardOutput.EndOfStream)
+            {
+                string line = process.StandardOutput.ReadLine();
+                Console.WriteLine(line);
+                // do something with line
+            }
         }
 
         private static void InstallScheme(string exefile)
