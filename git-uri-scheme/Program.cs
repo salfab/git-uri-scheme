@@ -39,12 +39,6 @@ namespace git_uri_scheme
             processStartInfo.WorkingDirectory = localRepo;
             processStartInfo.RedirectStandardOutput = true;
             var process = System.Diagnostics.Process.Start(processStartInfo);
-            //while (!process.StandardOutput.EndOfStream)
-            //{
-            //    string line = process.StandardOutput.ReadLine();
-            //    Console.WriteLine(line);
-            //    // do something with line
-            //}
         }
 
         private static void InstallScheme(string exefile)
