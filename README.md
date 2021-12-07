@@ -3,4 +3,4 @@ a commandline tool to handle common git commands as URI-cheme, to represent git 
 
 ## supported commands : 
 
-- checkout (git-uri://checkout/[repo-path]?localRepo=[localPath]
+- checkout : `git-uri://checkout/[repo-path]?localRepo=[localPath]`
